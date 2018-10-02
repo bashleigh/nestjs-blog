@@ -20,8 +20,8 @@ export class UserService {
 
     async paginate(options: PaginationOptionsInterface): Promise<Pagination<User>> {
         const [results, total] = await this.userRepository.findAndCount({
-            take: options.take,
-            skip: options.page,
+            take: options.limit,
+            skip: options.page, //think this needs to be page * limit 
         });
 
         return new Pagination<User>({

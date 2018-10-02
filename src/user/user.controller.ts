@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Put, Body, ValidationPipe, UnprocessableEntityException, Param, NotFoundException} from '@nestjs/common';
+import {Controller, Get, Post, Put, Body, ValidationPipe, UnprocessableEntityException, Param, NotFoundException, Request} from '@nestjs/common';
 import { UserEntity } from 'entities';
 import { Pagination } from 'paginate';
 import { UserService } from './user.service';
@@ -10,9 +10,12 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get()
-    async index(): Promise<Pagination<UserEntity>> {
+    async index(@Request() request): Promise<Pagination<UserEntity>> {
         //TODO make PaginationOptionsInterface an object so it can be defaulted 
-        return await this.userService.paginate();
+        return await this.userService.paginate({
+            limit: request.query.hasOwnProperty('limit') ? request.query.limit : 10,
+            page: request.query.hasOwnProperty('page') ? request.query.page : 0,
+        });
     }
 
     @Post()
@@ -51,6 +54,4 @@ export class UserController {
 
         return user;
     }
-
-    
 }
