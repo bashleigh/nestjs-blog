@@ -10,10 +10,10 @@ import {
   NotFoundException,
   Request,
 } from '@nestjs/common';
-import { UserEntity } from 'entities';
-import { Pagination } from 'paginate';
+import { UserEntity } from './../entities';
+import { Pagination } from './../paginate';
 import { UserService } from './user.service';
-import { UserModel } from 'models';
+import { UserModel } from './../models';
 import { UpdateResult } from 'typeorm';
 
 @Controller('users')
