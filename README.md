@@ -53,6 +53,15 @@ $ yarn test:e2e
 ```
 this will run jest on all `.e2e-spec.ts` files.
 
+#### Coverage 
+
+Use jest to show you a coverage of your tests
+
+```bash
+$ yarn test:cov
+```
+
 ## Build your own NestJS application 
 
 Want to get started on your own NestJS application? Simply install the [nest-cli](https://github.com/nestjs/nest-cli) `npm i -g @nestjs/cli` and use the command `nest new my-application` to create a new directory called `my-application` with nestjs ready to go!
+
