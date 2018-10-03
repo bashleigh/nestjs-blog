@@ -26,6 +26,7 @@
     "@nestjs/typeorm": "^5.2.2",
     "@nestjs/websockets": "^5.0.0",
     "bcrypt": "^3.0.1",
+    "class-transformer": "^0.1.9",
     "class-validator": "^0.9.1",
     "fastify-formbody": "^2.0.0",
     "mysql": "^2.16.0",
