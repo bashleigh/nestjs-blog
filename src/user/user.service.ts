@@ -1,7 +1,7 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import {UserEntity as User, UserEntity} from './../entities';
+import { UserEntity as User, UserEntity } from './../entities';
 import { Pagination, PaginationOptionsInterface } from './../paginate';
 import { UserModel } from 'models';
 import * as bcrypt from 'bcrypt';
@@ -9,58 +9,61 @@ import { InjectConfig, ConfigService } from 'nestjs-config';
 
 @Injectable()
 export class UserService {
-    private saltRounds: number;
+  private saltRounds: number;
 
-    constructor(
-        @InjectRepository(User) private readonly userRepository: Repository<User>,
-        @InjectConfig() private readonly config: ConfigService,
-    ) {
-        this.saltRounds = config.get('app.salt_rounds', 10);
-    }
+  constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectConfig() private readonly config: ConfigService,
+  ) {
+    this.saltRounds = config.get('app.salt_rounds', 10);
+  }
 
-    async paginate(options: PaginationOptionsInterface): Promise<Pagination<User>> {
-        const [results, total] = await this.userRepository.findAndCount({
-            take: options.limit,
-            skip: options.page, //think this needs to be page * limit 
-        });
+  async paginate(
+    options: PaginationOptionsInterface,
+  ): Promise<Pagination<User>> {
+    const [results, total] = await this.userRepository.findAndCount({
+      take: options.limit,
+      skip: options.page, //think this needs to be page * limit
+    });
 
-        return new Pagination<User>({
-            results,
-            total,
-        });
-    }
+    return new Pagination<User>({
+      results,
+      total,
+    });
+  }
 
-    async create(user: UserModel): Promise<User> {
+  async create(user: UserModel): Promise<User> {
+    user.password = await this.getHash(user.password);
 
-        user.password = await this.getHash(user.password);
-        
-        const result = await this.userRepository.save(this.userRepository.create(user));
-        
-        delete result.password;
-        return result;
-    }
+    const result = await this.userRepository.save(
+      this.userRepository.create(user),
+    );
 
-    async update(user: UserEntity): Promise<UpdateResult> {
-        return await this.userRepository.update(user.id, user);
-    }
+    delete result.password;
+    return result;
+  }
 
-    async findByEmail(email: string): Promise<User|null> {
-        return await this.userRepository.findOne({
-            where: {
-                email,
-            },
-        });
-    }
+  async update(user: UserEntity): Promise<UpdateResult> {
+    return await this.userRepository.update(user.id, user);
+  }
 
-    async findById(id: number): Promise<UserEntity|null> {
-        return await this.userRepository.findOneOrFail(id);
-    }
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.userRepository.findOne({
+      where: {
+        email,
+      },
+    });
+  }
 
-    async getHash(password: string): Promise<string> {
-        return await bcrypt.hash(password, this.saltRounds);
-    }
+  async findById(id: number): Promise<UserEntity | null> {
+    return await this.userRepository.findOneOrFail(id);
+  }
 
-    async compareHash(password: string, hash: string): Promise<boolean> {
-        return await bcrypt.compare(password, hash);
-    }
+  async getHash(password: string): Promise<string> {
+    return await bcrypt.hash(password, this.saltRounds);
+  }
+
+  async compareHash(password: string, hash: string): Promise<boolean> {
+    return await bcrypt.compare(password, hash);
+  }
 }

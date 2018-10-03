@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
+import { UserModule } from './user';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import * as path from 'path';
       useFactory: (config: ConfigService) => config.get('database'),
       inject: [ConfigService],
     }),
+    UserModule,
   ],
 })
 export class AppModule {}
