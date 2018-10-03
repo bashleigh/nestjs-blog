@@ -6,6 +6,8 @@ node_js:
   - "node"
 services:
   - docker
+before_script:
+  - sudo /etc/init.d/mysql stop
 before_install:
   - cp .env.dist .env
   - docker-compose up -d --build --force-recreate
