@@ -4,10 +4,12 @@ import { ConfigModule, ConfigService } from 'nestjs-config';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pagination } from '../paginate';
+import { INestApplication } from '@nestjs/common';
 
 describe('UserService', () => {
   let module: TestingModule;
   let userService: UserService;
+  let app: INestApplication;
 
   beforeEach(async () => {
     module = await Test.createTestingModule({
@@ -20,6 +22,9 @@ describe('UserService', () => {
         UserModule,
       ],
     }).compile();
+
+    app = await module.createNestApplication();
+
     userService = module.get(UserService);
   });
 
@@ -29,4 +34,6 @@ describe('UserService', () => {
       page: 0,
     })).toBeInstanceOf(Pagination);
   });
+
+  afterAll(() => app.close());
 });
