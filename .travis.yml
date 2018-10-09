@@ -9,7 +9,7 @@ services:
 before_install:
   - cp .env.dist .env
   - docker-compose up -d --build --force-recreate
-  - docker ps
+  - ./testdb.sh
   - npm i -g npm@latest
   - npm i -g yarn
 install:

@@ -5,3 +5,8 @@ services:
     env_file: .env
     ports:
       - 3307:3306
+    healthcheck:
+      test: "cat /proc/net/tcp /proc/net/tcp6 | grep ':0CEB'"
+      interval: 10s
+      timeout: 5s
+      retries: 5
