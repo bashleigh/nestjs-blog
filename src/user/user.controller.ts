@@ -22,7 +22,7 @@ export class UserController {
 
   @Get()
   async index(@Request() request): Promise<Pagination<UserEntity>> {
-    //TODO make PaginationOptionsInterface an object so it can be defaulted
+    // TODO make PaginationOptionsInterface an object so it can be defaulted
     return await this.userService.paginate({
       limit: request.query.hasOwnProperty('limit') ? request.query.limit : 10,
       page: request.query.hasOwnProperty('page') ? request.query.page : 0,
@@ -33,7 +33,7 @@ export class UserController {
   async store(
     @Body(new ValidationPipe()) user: UserModel,
   ): Promise<UserEntity> {
-    //TODO check duplication
+    // TODO check duplication
     const emailExists = this.userService.findByEmail(user.email);
 
     if (emailExists) {

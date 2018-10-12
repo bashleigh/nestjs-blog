@@ -1,6 +1,6 @@
-import {Controller, Post, Body, ValidationPipe} from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
 import { JwtPayloadInterface } from './interfaces';
-import {AuthModel, UserModel} from './../models';
+import { AuthModel, UserModel } from './../models';
 import { AuthService } from './auth.service';
 
 @Controller('auth')

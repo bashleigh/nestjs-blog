@@ -1,5 +1,5 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {UserService, UserModule} from './';
+import { Test, TestingModule } from '@nestjs/testing';
+import { UserService, UserModule } from './';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -33,25 +33,28 @@ describe('UserService', () => {
   });
 
   it('Pagination', async () => {
-    expect(await userService.paginate({
-      limit: 10,
-      page: 0,
-    })).toBeInstanceOf(Pagination);
+    expect(
+      await userService.paginate({
+        limit: 10,
+        page: 0,
+      }),
+    ).toBeInstanceOf(Pagination);
   });
 
   it('Creation', async () => {
     const number = Math.floor(Math.random() * Math.floor(20));
-    expect(user = await userService.create({
-      email: `test${number}@test.com`,
-      firstname: 'test',
-      lastname: 'test',
-      password: 'password',
-    })).toBeInstanceOf(UserEntity);
+    expect(
+      (user = await userService.create({
+        email: `test${number}@test.com`,
+        firstname: 'test',
+        lastname: 'test',
+        password: 'password',
+      })),
+    ).toBeInstanceOf(UserEntity);
     expect(user).not.toHaveProperty('password');
   });
 
   it('Update', async () => {
-
     user.firstname = 'updated';
 
     const result = await userService.update(user);

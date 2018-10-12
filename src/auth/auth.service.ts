@@ -26,6 +26,6 @@ export class AuthService {
       throw new BadRequestException('Invalid credentials');
     }
 
-    return this.jwtService.sign({id: user.id});
+    return this.jwtService.sign({ id: user.id });
   }
 }

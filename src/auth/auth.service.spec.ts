@@ -1,11 +1,11 @@
-import {INestApplication, BadRequestException} from '@nestjs/common';
-import {Test, TestingModule} from '@nestjs/testing';
-import {AuthService} from './auth.service';
-import {ConfigModule, ConfigService} from 'nestjs-config';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { INestApplication, BadRequestException } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AuthService } from './auth.service';
+import { ConfigModule, ConfigService } from 'nestjs-config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 import { UserModule, UserService } from '../user';
-import {AuthModule} from './auth.module';
+import { AuthModule } from './auth.module';
 import { JwtPayloadInterface } from './interfaces';
 import { UserEntity } from '../entities';
 
@@ -52,7 +52,6 @@ describe('AuthService', () => {
   });
 
   it('authenticate', async () => {
-
     user = await userService.create({
       email: 'email@email.com',
       password: 'testtest',
