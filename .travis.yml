@@ -1,7 +1,7 @@
 sudo: required
-laguage: node_js
+
+language: node_js
 node_js:
-  - "9"
   - "10"
   - "node"
 services:
