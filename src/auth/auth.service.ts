@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { UserService } from 'user';
+import { UserService } from './../user';
 import { UserEntity } from 'entities';
 import { JwtPayloadInterface } from './interfaces';
 import { AuthModel } from 'models';
@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   async authenticate(auth: AuthModel): Promise<string> {
-    const user = await this.userService.findByEmail(auth.email);
+    const user = await this.userService.findByEmailWithPassword(auth.email);
     if (!user) {
       throw new BadRequestException();
     }
