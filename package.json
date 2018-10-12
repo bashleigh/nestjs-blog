@@ -4,6 +4,7 @@
   "description": "nestjs-blog-example",
   "author": "ashlegih-simonelli",
   "license": "MIT",
+  "repository": "git@github.com:bashleigh/nestjs-blog.git",
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
