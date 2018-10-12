@@ -68,3 +68,14 @@ $ yarn test:cov
 
 Want to get started on your own NestJS application? Simply install the [nest-cli](https://github.com/nestjs/nest-cli) `npm i -g @nestjs/cli` and use the command `nest new my-application` to create a new directory called `my-application` with nestjs ready to go!
 
+# Packages
+
+I used a variety of packages to develop this example api. Here's a list of them and where I got them from 
+
+- Nestjs
+  - [@nestjs/typeorm](https://github.com/nestjs/typeorm) A typeorm module for nestjs
+  - [@nestjs/passport](https://github.com/nestjs/passport) An easy to use module for passport include AuthGuards
+  - [@nestjs/jwt](https://github.com/nestjs/jwt) A JWT module for nestjs
+- nestjs-community
+  - [nestjs-config](https://github.com/nestjs-community/nestjs-config) A config module for nestjs (envs)
+- [typeorm](https://github.com/typeorm/typeorm) typeorm is an orm for TypeScript
