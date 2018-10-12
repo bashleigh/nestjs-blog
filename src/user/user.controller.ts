@@ -33,7 +33,6 @@ export class UserController {
   async store(
     @Body(new ValidationPipe()) user: UserModel,
   ): Promise<UserEntity> {
-    // TODO check duplication
     const emailExists = this.userService.findByEmail(user.email);
 
     if (emailExists) {
