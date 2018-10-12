@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pagination } from '../paginate';
 import { INestApplication } from '@nestjs/common';
 import { UserEntity } from '../entities';
-import { UpdateResult } from 'typeorm';
+import { UpdateResult, DeleteResult } from 'typeorm';
 
 describe('UserService', () => {
   let module: TestingModule;
@@ -87,5 +87,10 @@ describe('UserService', () => {
     expect(result).toEqual(expect.objectContaining(user));
   });
 
-  afterAll(() => app.close());
+  it('delete', async () => {
+    const result = await userService.destroy(user.id);
+    expect(result).toBeInstanceOf(DeleteResult);
+  });
+
+  afterAll(async () => app.close());
 });

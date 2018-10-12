@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { UserEntity as User, UserEntity } from './../entities';
 import { Pagination, PaginationOptionsInterface } from './../paginate';
 import { UserModel } from 'models';
@@ -78,5 +78,9 @@ export class UserService {
         select: ['email', 'password'],
       },
     );
+  }
+
+  async destroy(id: number): Promise<DeleteResult> {
+    return await this.userRepository.delete(id);
   }
 }
