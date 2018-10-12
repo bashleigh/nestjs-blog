@@ -23,8 +23,10 @@ export class UserService {
   ): Promise<Pagination<User>> {
     const [results, total] = await this.userRepository.findAndCount({
       take: options.limit,
-      skip: options.page, //think this needs to be page * limit
+      skip: options.page, // think this needs to be page * limit
     });
+
+    // TODO add more tests for paginate
 
     return new Pagination<User>({
       results,
