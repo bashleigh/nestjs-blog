@@ -47,6 +47,7 @@ describe('UserService', () => {
       lastname: 'test',
       password: 'password',
     })).toBeInstanceOf(UserEntity);
+    expect(user).not.toHaveProperty('password');
   });
 
   it('Update', async () => {
