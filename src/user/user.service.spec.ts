@@ -32,7 +32,7 @@ describe('UserService', () => {
     userService = module.get(UserService);
   });
 
-  it('Pagination', async () => {
+  it('paginate', async () => {
     expect(
       await userService.paginate({
         limit: 10,
@@ -41,7 +41,7 @@ describe('UserService', () => {
     ).toBeInstanceOf(Pagination);
   });
 
-  it('Creation', async () => {
+  it('create', async () => {
     const number = Math.floor(Math.random() * Math.floor(20));
     expect(
       (user = await userService.create({
