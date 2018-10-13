@@ -10,5 +10,5 @@ export class BlogModel {
   content: string;
 
   @IsDate()
-  publish_at: Date;
+  publish_at?: Date;
 }
