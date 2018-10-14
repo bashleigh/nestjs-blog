@@ -14,6 +14,7 @@ import { BlogEntity } from './../entities';
 import { Pagination } from './../paginate';
 import { BlogService } from './blog.service';
 import { BlogModel } from './../models';
+import { UpdateResult } from 'typeorm';
 
 @Controller('blog')
 export class BlogController {
@@ -34,6 +35,7 @@ export class BlogController {
     if (!blog) {
       throw new NotFoundException();
     }
+    return blog;
   }
 
   @Post()
@@ -46,7 +48,7 @@ export class BlogController {
       throw new UnprocessableEntityException();
     }
 
-    return await this.blogService.create(blog);
+    return await this.blogService.create(body);
   }
 
   @Put('/{id}')
@@ -54,7 +56,7 @@ export class BlogController {
     @Param('id') id: number,
     @Body(new ValidationPipe()) body: BlogModel,
   ): Promise<UpdateResult> {
-    const blog = await this.blogService.findById(blog.id);
+    const blog = await this.blogService.findById(body.id);
 
     if (!blog) {
       throw new NotFoundException();
