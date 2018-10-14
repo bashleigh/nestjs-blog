@@ -1,5 +1,5 @@
-import {Injectable} from '@nestjs/common';
-import {InjectConfig} from 'nestjs-config';
+import { Injectable } from '@nestjs/common';
+import { InjectConfig } from 'nestjs-config';
 const slugify = require('slugify');
 
 @Injectable()

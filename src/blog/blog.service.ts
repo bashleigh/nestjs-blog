@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { BlogEntity } from './../entities';
 import { Pagination, PaginationOptionsInterface } from './../paginate';
-import {SlugProvider} from './slug.provider';
-import {BlogModel} from './../models';
+import { SlugProvider } from './slug.provider';
+import { BlogModel } from './../models';
 
 @Injectable()
 export class BlogService {
@@ -39,11 +39,11 @@ export class BlogService {
     return await this.blogRepository.update(blog.id, blog);
   }
 
-  async findById(id: number): Promise<BlogEntity|null> {
+  async findById(id: number): Promise<BlogEntity | null> {
     return await this.blogRepository.findOne(id);
   }
 
-  async findBySlug(slug: string): Promise<BlogEntity|null> {
+  async findBySlug(slug: string): Promise<BlogEntity | null> {
     return await this.blogRepository.findOne({
       where: {
         slug,
@@ -75,9 +75,10 @@ export class BlogService {
     return blog;
   }
 
-  private async findSlugs(slug: string): Promise<BlogEntity[]|null> {
-    return await this.blogRepository.createQueryBuilder('blog')
-      .where('slug like :slug', {slug: `${slug}%`})
+  private async findSlugs(slug: string): Promise<BlogEntity[] | null> {
+    return await this.blogRepository
+      .createQueryBuilder('blog')
+      .where('slug like :slug', { slug: `${slug}%` })
       .getMany();
   }
 }

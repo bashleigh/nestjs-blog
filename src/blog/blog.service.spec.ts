@@ -43,10 +43,12 @@ describe('BlogService', () => {
   });
 
   it('create', async () => {
-    expect(blog = await blogService.create({
-      title: 'test',
-      content: '#Content',
-    })).toBeInstanceOf(BlogEntity);
+    expect(
+      (blog = await blogService.create({
+        title: 'test',
+        content: '#Content',
+      })),
+    ).toBeInstanceOf(BlogEntity);
   });
 
   it('update', async () => {
@@ -81,21 +83,25 @@ describe('BlogService', () => {
 
     expect(sluggedBlog.slug).toBe('i-have-spaces');
 
-    blogs.push(await blogService.create({
-      title: 'title',
-      content: 'test',
-    }));
+    blogs.push(
+      await blogService.create({
+        title: 'title',
+        content: 'test',
+      }),
+    );
 
-    blogs.push(await blogService.create({
-      title: 'title',
-      content: 'test',
-    }));
+    blogs.push(
+      await blogService.create({
+        title: 'title',
+        content: 'test',
+      }),
+    );
 
     expect(blogs[blogs.length - 1].slug).toEqual('title-1');
   });
 
   afterAll(async () => {
-    blogs.forEach(async ({id}) => {
+    blogs.forEach(async ({ id }) => {
       await blogService.destroy(id);
     });
     app.close();
