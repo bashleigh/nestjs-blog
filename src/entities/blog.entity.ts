@@ -15,7 +15,7 @@ export class BlogEntity extends BaseEntity {
   content: string;
 
   @Column({})
-  published: boolean;
+  published: boolean = false;
 
   @Column({
     type: Date,
