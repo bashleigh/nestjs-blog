@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 import { UserModule, UserService } from '../user';
 import { AuthModule } from './auth.module';
-import { JwtPayloadInterface } from './interfaces';
 import { UserEntity } from '../entities';
 
 describe('AuthService', () => {
