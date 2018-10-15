@@ -72,6 +72,11 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage"
+    "coverageDirectory": "../coverage",
+    "collectCoverageFrom": [
+      "!src/config/**",
+      "!src/models/**",
+      "!src/entities/**"
+    ]
   }
 }
