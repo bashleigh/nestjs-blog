@@ -75,7 +75,7 @@ export class BlogService {
     return blog;
   }
 
-  private async findSlugs(slug: string): Promise<BlogEntity[] | null> {
+  private async findSlugs(slug: string): Promise<BlogEntity[]> {
     return await this.blogRepository
       .createQueryBuilder('blog')
       .where('slug like :slug', { slug: `${slug}%` })
