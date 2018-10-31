@@ -9,13 +9,16 @@ import {
   Body,
   ValidationPipe,
   UnprocessableEntityException,
+  UseGuards,
 } from '@nestjs/common';
 import { BlogEntity } from './../entities';
 import { Pagination } from './../paginate';
 import { BlogService } from './blog.service';
 import { BlogModel } from './../models';
 import { UpdateResult } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('blog')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
