@@ -33,7 +33,7 @@ export class UserController {
   async store(
     @Body(new ValidationPipe()) user: UserModel,
   ): Promise<UserEntity> {
-    const emailExists = this.userService.findByEmail(user.email);
+    const emailExists = await this.userService.findByEmail(user.email);
 
     if (emailExists) {
       throw new UnprocessableEntityException();
