@@ -2,11 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BlogService, BlogModule } from './';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import * as path from 'path';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, getConnectionToken } from '@nestjs/typeorm';
 import { Pagination } from '../paginate';
 import { INestApplication } from '@nestjs/common';
 import { BlogEntity } from '../entities';
-import { UpdateResult, DeleteResult } from 'typeorm';
+import { UpdateResult, DeleteResult, Connection } from 'typeorm';
 
 describe('BlogService', () => {
   let app: INestApplication;
@@ -65,7 +65,6 @@ describe('BlogService', () => {
   });
 
   it('uniqueSlug', async () => {
-    // TODO make a slug
 
     let sluggedBlog: BlogEntity;
 
@@ -101,9 +100,8 @@ describe('BlogService', () => {
   });
 
   afterAll(async () => {
-    blogs.forEach(async ({ id }) => {
-      await blogService.destroy(id);
-    });
+    const connection = module.get<Connection>(getConnectionToken('default'));
+    await connection.query('TRUNCATE blog_entity');
     app.close();
   });
 });
