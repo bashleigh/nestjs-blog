@@ -1,7 +1,7 @@
 # NestJS Blog
 
-<a href="https://travis-ci.org/bashleigh/nestjs-blog"><img src="https://travis-ci.org/bashleigh/nestjs-blog.svg?branch=master"/></a>
-<a href='https://coveralls.io/github/bashleigh/nestjs-blog?branch=master'><img src='https://coveralls.io/repos/github/bashleigh/nestjs-blog/badge.svg?branch=master' alt='Coverage Status' /></a>
+<!-- <a href="https://travis-ci.org/bashleigh/nestjs-blog"><img src="https://travis-ci.org/bashleigh/nestjs-blog.svg?branch=master"/></a>
+<a href='https://coveralls.io/github/bashleigh/nestjs-blog?branch=master'><img src='https://coveralls.io/repos/github/bashleigh/nestjs-blog/badge.svg?branch=master' alt='Coverage Status' /></a> -->
 
 This is an example of how to use [nestjs](https://github.com/nestjs/nest) with jwt and typeorm to build a basic blog API.
 
