@@ -29,7 +29,7 @@
     "@nestjs/typeorm": "^7.0.0",
     "bcrypt": "^3.0.1",
     "class-transformer": "^0.3.1",
-    "class-validator": "^0.9.1",
+    "class-validator": "^0.14.0",
     "coveralls": "^3.0.2",
     "fastify-formbody": "^2.0.0",
     "mysql": "^2.16.0",
