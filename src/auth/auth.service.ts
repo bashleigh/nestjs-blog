@@ -22,7 +22,7 @@ export class AuthService {
       throw new BadRequestException();
     }
 
-    if (!this.userService.compareHash(user.password, user.password)) {
+    if (!this.userService.compareHash(auth.password, user.password)) {
       throw new BadRequestException('Invalid credentials');
     }
 
